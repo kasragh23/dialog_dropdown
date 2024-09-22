@@ -8,8 +8,11 @@ class DropDown extends StatefulWidget {
 }
 
 class _DropDownState extends State<DropDown> {
+
   final List<String> _dropdownItems = ['item1', 'item2', 'item3'];
+
   String? _selectedItem;
+
   final TextEditingController _controller = TextEditingController();
 
   String? getText() {
