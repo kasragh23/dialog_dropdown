@@ -1,3 +1,4 @@
+import 'package:dialog_17_18/example.dart';
 import 'package:flutter/material.dart';
 
 class SwitchTask extends StatefulWidget {
@@ -14,8 +15,7 @@ class _SwitchTaskState extends State<SwitchTask> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body:
-        ListView.builder(
+        body: ListView.builder(
           itemCount: _switches.length,
           itemBuilder: (context, index) {
             return ListTile(
@@ -23,7 +23,6 @@ class _SwitchTaskState extends State<SwitchTask> {
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-
                   Switch(
                     value: _switches[index],
                     onChanged: (bool value) {
@@ -37,6 +36,7 @@ class _SwitchTaskState extends State<SwitchTask> {
                     icon: const Icon(Icons.delete),
                     onPressed: () => _removeSwitch(index),
                   ),
+
                 ],
               ),
             );
@@ -46,17 +46,18 @@ class _SwitchTaskState extends State<SwitchTask> {
           onPressed: _addSwitch,
           child: const Icon(Icons.add),
         ),
+
       );
 
   void _removeSwitch(int index) {
-    print ('it is active  0$index');
-    if(_switches[index]){
-      print ('it is active');
-    }
-    else{
+    print('it is active  0$index');
+    if (_switches[index]) {
+      print('it is active');
+    } else {
       setState(() {
         _switches.removeAt(index);
-        print ('it is active  0$index');// Remove the switch at the specified index
+        print(
+            'it is active  0$index'); // Remove the switch at the specified index
       });
     }
   }

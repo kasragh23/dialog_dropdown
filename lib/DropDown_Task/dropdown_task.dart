@@ -13,6 +13,57 @@ class _DropdownTaskState extends State<DropdownTask> {
   String? _selectedItem;
   final TextEditingController _textController = TextEditingController();
 
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    body: Padding(
+      padding: const EdgeInsets.all(40.0),
+      child: Column(
+        children: [
+          DropdownButton<String>(
+            iconEnabledColor: Colors.yellowAccent.shade400,
+            borderRadius: BorderRadius.circular(8),
+            dropdownColor: Colors.greenAccent,
+            focusColor: Colors.greenAccent,
+            value: _selectedItem,
+            hint: const Text('Select an item'),
+            items: _dropdownItems.map((String item) {
+              return DropdownMenuItem<String>(
+                value: item,
+                child: Text(item),
+              );
+            }).toList(),
+            onChanged: (String? newValue) {
+              setState(() {
+                _selectedItem = newValue;
+              });
+            },
+          ),
+          TextField(
+            controller: _textController,
+            decoration: InputDecoration(
+              labelText: 'Enter new item',
+              suffixIcon: IconButton(
+                  onPressed: _deleteItem,
+                  icon: const Icon(Icons.delete, color: Colors.deepOrange,)
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: _addItem,
+                child: const Text('Add Item'),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
+
   void _addItem() {
     setState(() {
       String text = _textController.text.toLowerCase();
@@ -36,53 +87,5 @@ class _DropdownTaskState extends State<DropdownTask> {
       }
     });
   }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    body: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          DropdownButton<String>(
-            borderRadius: BorderRadius.circular(12),
-            dropdownColor: Colors.greenAccent,
-            focusColor: Colors.green,
-            value: _selectedItem,
-            hint: Text('Select an item'),
-            items: _dropdownItems.map((String item) {
-              return DropdownMenuItem<String>(
-                value: item,
-                child: Text(item),
-              );
-            }).toList(),
-            onChanged: (String? newValue) {
-              setState(() {
-                _selectedItem = newValue;
-              });
-            },
-          ),
-          TextField(
-            controller: _textController,
-            decoration: InputDecoration(
-              labelText: 'Enter new item',
-              suffixIcon: IconButton(
-                  onPressed: _deleteItem,
-                  icon: Icon(Icons.delete, color: Colors.red,)),
-            ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: _addItem,
-                child: Text('Add Item'),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-  );
 }
 
