@@ -46,6 +46,13 @@ class _DropDownState extends State<DropDown> {
                       icon: const Icon(Icons.delete, color: Colors.red),
                     )),
               ),
+              const SizedBox(height: 15),
+              Row(
+                children: [
+                  ElevatedButton(
+                      onPressed: _addItem, child: const Text('add item'))
+                ],
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -58,13 +65,7 @@ class _DropDownState extends State<DropDown> {
                       icon: Icon(Icons.edit, color: Colors.blue.shade700,),
                     )),
               ),
-              const SizedBox(height: 15),
-              Row(
-                children: [
-                  ElevatedButton(
-                      onPressed: _addItem, child: const Text('add item'))
-                ],
-              )
+
             ],
           ),
         ),
